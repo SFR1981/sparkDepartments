@@ -14,14 +14,17 @@ import java.util.Map;
 import static spark.Spark.get;
 
 public class EmployeesController {
+    public EmployeesController(){
+        this.setupEndPoints();
 
-    public static void main(String[] args) {
 
-        Seeds.seedData();
+    }
 
-        ManagersController managersController = new ManagersController();
-        EngineersController engineersController = new EngineersController();
-        DepartmentsController departmentsController = new DepartmentsController();
+    public void setupEndPoints(){
+
+
+
+
 
         get("/employees", (req,res) ->{
             Map<String, Object> model = new HashMap();
