@@ -3,6 +3,7 @@ package controllers;
 import db.DBHelper;
 import models.Department;
 import models.Engineer;
+import models.Manager;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 
@@ -30,6 +31,7 @@ public class DepartmentsController {
 
             List<Department> departments = DBHelper.getAll(Department.class);
             model.put("departments", departments);
+
 
             return new ModelAndView(model, "templates/layout.vtl");
         },new VelocityTemplateEngine());
@@ -80,6 +82,8 @@ public class DepartmentsController {
             int id = Integer.parseInt(req.params(":id"));
             Department department = DBHelper.find(id, Department.class);
             model.put("department", department);
+            Manager manager = DBHelper.findManagerForDept(department);
+            model.put("manager", manager);
             model.put("template", "templates/departments/show.vtl");
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
