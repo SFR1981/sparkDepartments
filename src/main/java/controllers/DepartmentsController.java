@@ -75,12 +75,21 @@ public class DepartmentsController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
+        get("departments/:id", (req,res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int id = Integer.parseInt(req.params(":id"));
+            Department department = DBHelper.find(id, Department.class);
+            model.put("department", department);
+            model.put("template", "templates/departments/show.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+        }, new VelocityTemplateEngine());
+
         post("/departments/:id", (req,res) ->{
             int id = Integer.parseInt(req.params(":id"));
             Department department = DBHelper.find(id, Department.class);
             String title = req.queryParams("title");
             department.setTitle(title);
-            DBHelper.update(department);
+            DBHelper.save(department);
             res.redirect("/departments");
             return null;
         }, new VelocityTemplateEngine());
