@@ -1,5 +1,5 @@
 <p class = "pageHeader"> All Engineers </p>
-<p>Manager of the month: $engineers.get(0).getFirstName()</p>
+
 
 <div>
     <a href="/engineers/new" class="button center">New Engineer</a>
@@ -14,10 +14,13 @@
         </tr>
         #foreach($engineer in $engineers)
         <tr>
-            <td>$engineer.getFirstName()</td>
-            <td>$engineer.getLastName()</td>
+            <td><a href="/engineers/$engineer.getId()">$engineer.getFirstName()</a></td>
+            <td><a href="/engineers/$engineer.getId()">$engineer.getLastName()</a></td>
             <td>$engineer.getDepartment().getTitle()</td>
             <td>$engineer.getSalary()</td>
+            <td><a href="/engineers/$engineer.getId()/edit">edit</a></td>
+            <td><td><form method="post" action="/engineers/$engineer.getId()/delete">
+            <input type="submit" value="Delete">
         </tr>
         #end
     </table>

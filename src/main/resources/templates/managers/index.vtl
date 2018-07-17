@@ -15,11 +15,17 @@
         </tr>
         #foreach($manager in $managers)
         <tr>
-            <td>$manager.getFirstName()</td>
-            <td>$manager.getLastName()</td>
+            <td><a href="/managers/$manager.getId()">$manager.getFirstName()</a></td>
+            <td><a href="/managers/$manager.getId()">$manager.getLastName()</a></td>
             <td>$manager.getDepartment().getTitle()</td>
             <td>$manager.getSalary()</td>
             <td>$manager.getBudget()</td>
+            <td><a href="/managers/$manager.getId()/edit">edit</a></td>
+            <td><td><form method="post" action="/managers/$manager.getId()/delete">
+            <input type="submit" value="Delete">
+
+
+        </form></td></td>
         </tr>
         #end
     </table>
