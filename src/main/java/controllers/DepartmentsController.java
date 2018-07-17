@@ -80,7 +80,9 @@ public class DepartmentsController {
             Department department = DBHelper.find(id, Department.class);
             String title = req.queryParams("title");
             department.setTitle(title);
-            DBHelper.save(department);
+            DBHelper.update(department);
+            res.redirect("/departments");
+            return null;
         }, new VelocityTemplateEngine());
     }
 
